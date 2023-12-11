@@ -20,6 +20,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# git commit -m "Create URL for polls"
-# Video: 32:30
