@@ -6,17 +6,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <form action="{% url 'polls:vote' question.id %}" method="post">
-    {% csrf_token %}
-    <fieldset>
-        <legend><h1>{{ question.question_text }}</h1></legend>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        {% endfor %}
-    </fieldset>
-    <input type="submit" value="Vote">
-    </form>
+    <div id="details-page">
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1 id="details-title">{{ question.question_text }}</h1></legend>
+            {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error_message }}
+                </div>
+            {% endif %}
+            {% for choice in question.choice_set.all %}
+                <div class="field-item">
+                    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                </div>
+            {% endfor %}
+        </fieldset>
+        <input id="input-button" type="submit" value="Vote">
+        </form>
+    </div>
+    <div>
+        <a href="{% url 'polls:index' %}">
+            <button class="toIndex-button">Home</button>
+        </a>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
