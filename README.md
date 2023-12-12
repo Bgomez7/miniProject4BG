@@ -11,11 +11,19 @@ Please run the following:
 pip install -r requirements.txt
 ```
 ## How to run
-To initialize the sqlite database, please type the following in the terminal:
+This will create SQL entries that will populate the database.
 ```
-
+python manage.py makemigrations
 ```
-In a terminal window, please type the following to start a local server:
+Apply migrations
 ```
-
+python manage.py migrate
+```
+Create an administrator login to access the /admin site
+```
+python manage.py createsuperuser
+```
+Type the following to start a local server:
+```
+python manage.py runserver
 ```
